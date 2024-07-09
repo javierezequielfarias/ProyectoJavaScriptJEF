@@ -1,201 +1,234 @@
-//PROYECTO FINAL JS PREENTREGA2 
+// //PROYECTO FINAL JS 
 
-let cantidad_alumnos
+// const materias = ['Literatura' , 'Matematica' , 'Historia' , 'Fisica' , 'Geografia' , 'Biologia' , 'Quimica' , ' Filosofia' , 'Idiomas' , 'Educacion Fisica']
+// let alumnos = []
+// let i = 0
+// function Alumnos(nombre, apellido, materia, nota1, nota2, nota3, promedio) {
+//     this.nombre = nombre;
+//     this.apellido = apellido;
+//     this.materia = materia;
+//     this.nota1 = nota1;
+//     this.nota2 = nota2;
+//     this.nota3 = nota3;
+//     this.promedio = promedio;
+// }
 
-let nombre_alumno
+// console.log("Inicio de programa");
 
-let curso_alumno
+// setTimeout(() => {
+//     const titulo = document.getElementById("titulo");
+//     titulo.innerHTML = "Bienvenido/a! Comience a cargar las notas de los alumnos";
+// }, 0);
 
-let materia_alumno
+// setTimeout(() => {
+//     const titulo = document.getElementById("titulo");
+//     titulo.innerHTML = "";
+//     const contenedorPrincipal = document.getElementById("ppal");
+//     const menuCarga = document.createElement("div");
+//     menuCarga.className = ("cargaNotas");
+//     menuCarga.innerHTML = ` <div class="container-fluid d-flex w-50 g-3 text-black">
+//                                 <div class="col">
+//                                     <input type="text" id="nombreAlumno" class="form-control" placeholder="Nombre" aria-label="First name">
+//                                 </div>
+//                                 <div class="col">
+//                                     <input type="text" id="apellidoAlumno" class="form-control" placeholder="Apellido" aria-label="Last name">
+//                                 </div>
+//                             </div>`;
+//     contenedorPrincipal.appendChild(menuCarga);
+// }, 5000);
 
-let nota_alumno
+// const botonCargarNotas = document.getElementById("cargar");
+// botonCargarNotas.addEventListener('click', (e) => {
+//     e.preventDefault();
+//     const contenedorPrincipal = document.getElementById("contenedorPrincipal");
+//     const menuCarga = document.createElement("div");
+//     menuCarga.className = ("cargaNotas");
+//     menuCarga.innerHTML = `<form class="container column w-50 g-3 text-white" id="formularioNotas">
+//                                 <p>Materia:${materias[i]}</p>
+//                                 <div class="col-md-6">
+//                                      <label for="nota1" class="form-label">Nota 1er trimestre</label>
+//                                      <input type="text" id="nota1" class="form-control" name="nota1">
+//                                 </div>
+//                                 <div class="col-md-6">
+//                                      <label for="nota2" class="form-label">Nota 2do trimestre</label>
+//                                      <input type="text" id="nota2" class="form-control" name="nota2">
+//                                 </div>
+//                                 <div class="col-md-6">
+//                                      <label for="nota3" class="form-label">Nota 3er trimestre</label>
+//                                      <input type="text" id="nota3" class="form-control" name="nota3">
+//                                 </div>
+//                                 <div class="col-12">
+//                                      <button type="submit" class="btn btn-primary">Enviar</button>
+//                                 </div>
+//                              </form>`;
+//     contenedorPrincipal.appendChild(menuCarga);
 
-let nota1_alumno
+//     const formularioNotas = document.getElementById("formularioNotas");
+//     formularioNotas.addEventListener('submit', (event) => {
+//         event.preventDefault(); // Evitar que el formulario se envíe
+//         const nombreAlumno = document.getElementById("nombreAlumno").value;
+//         const apellidoAlumno = document.getElementById("apellidoAlumno").value;
+//         console.log(nombreAlumno , apellidoAlumno)
+//         // Obtener los valores de los campos
+//         const nota1 = parseFloat(document.getElementById("nota1").value);
+//         const nota2 = parseFloat(document.getElementById("nota2").value);
+//         const nota3 = parseFloat(document.getElementById("nota3").value);
+//         console.log(nota1, nota2, nota3);
+//         const promedioAlumno = (nota1+nota2+nota3)/3;
+//         console.log("promedio ", promedioAlumno);
+//         formularioNotas.reset();
+//         const alumno = new Alumnos(nombreAlumno , apellidoAlumno , materias[i] , nota1 , nota2 , nota3 , promedioAlumno);
+//         console.log(alumno);
+//         // Aquí podrías hacer lo que necesites con los valores de las notas
+//         i++;
+//     });
 
-let nota2_alumno
+// });
 
-let nota3_alumno
 
-let suma = 0
 
-let promedio_alumno
 
-let acumulador = 0
 
-let datos_alumnos = []
 
-let max_alumno
 
-let max_promedio = 0
 
-let max_materia
 
-let alumnos_ap = []
 
-let alumnos_desap = []
 
-let materias = ['Literatura' , 'Matematica' , 'Historia' , 'Fisica' , 'Geografia' , 'Biologia' , 'Quimica' , ' Filosofia' , 'Idiomas' , 'Educacion Fisica']
 
-let acumulador_ap = 0
 
-let acumulador_desap = 0
+const materias = ['Literatura', 'Matematica', 'Historia', 'Fisica', 'Geografia', 'Biologia', 'Quimica', 'Filosofia', 'Idiomas', 'Educacion Fisica'];
+let alumnos = [];
+let i = 0;
+let promedioMaximo = 0;
+let materiaMaxProm = [];
 
-cantidad_alumnos = Number(prompt('Ingrese cantidad de alumnos del curso'))
-
-class Alumno{
-
-constructor (nombre , curso , materia , nota1 , nota2 , nota3 , promedio){
-
-this.nombre = nombre
-
-this.curso = curso
-
-this.materia = materia
-
-this.nota1 = nota1
-
-this.nota2 = nota2
-
-this.nota3 = nota3
-
-this.promedio = promedio
-
+function MejorAlumno(nom, apell, mat, promed){
+    this.nom = nom;
+    this.apell = apell;
+    this.mat = mat;
+    this.promed = promed;
 }
 
+function Alumnos(nombre, apellido, materia, nota1, nota2, nota3, promedio) {
+    this.nombre = nombre;
+    this.apellido = apellido;
+    this.materia = materia;
+    this.nota1 = nota1;
+    this.nota2 = nota2;
+    this.nota3 = nota3;
+    this.promedio = promedio;
 }
 
-do{
+console.log("Inicio de programa");
 
-nombre_alumno = prompt('Ingrese nombre del alumno')
+setTimeout(() => {
+    const titulo = document.getElementById("titulo");
+    titulo.innerHTML = "Bienvenido/a! Comience a cargar las notas de los alumnos";
+}, 0);
 
-curso_alumno = prompt('Ingrese curso del alumno')
+setTimeout(() => {
+    const titulo = document.getElementById("titulo");
+    titulo.innerHTML = "";
+    const contenedorPrincipal = document.getElementById("ppal");
+    const menuCarga = document.createElement("div");
+    menuCarga.className = ("cargaNotas");
+    menuCarga.innerHTML = ` <div class="container-fluid d-flex w-50 g-3 text-black">
+                                <div class="col">
+                                    <input type="text" id="nombreAlumno" class="form-control" placeholder="Nombre" aria-label="First name">
+                                </div>
+                                <div class="col">
+                                    <input type="text" id="apellidoAlumno" class="form-control" placeholder="Apellido" aria-label="Last name">
+                                </div>
+                            </div>`;
+    contenedorPrincipal.appendChild(menuCarga);
+}, 5000);
 
-//materia_alumno = prompt('Ingrese materia del alumno')
+const botonCargarNotas = document.getElementById("cargar");
+botonCargarNotas.addEventListener('click', (e) => {
+    e.preventDefault();
+    const contenedorPrincipal = document.getElementById("contenedorPrincipal");
+    const menuCarga = document.createElement("div");
+    menuCarga.className = ("cargaNotas");
+    menuCarga.innerHTML = `<form class="container column w-50 g-3 text-white" id="formularioNotas">
+                                <div class="col-md-6">
+                                    <label for="materia" class="form-label">Materia</label>
+                                    <select id="materia" class="form-select">
+                                    </select>
+                                </div>
+                                <div class="col-md-6">
+                                     <label for="nota1" class="form-label">Nota 1er trimestre</label>
+                                     <input type="text" id="nota1" class="form-control" name="nota1">
+                                </div>
+                                <div class="col-md-6">
+                                     <label for="nota2" class="form-label">Nota 2do trimestre</label>
+                                     <input type="text" id="nota2" class="form-control" name="nota2">
+                                </div>
+                                <div class="col-md-6">
+                                     <label for="nota3" class="form-label">Nota 3er trimestre</label>
+                                     <input type="text" id="nota3" class="form-control" name="nota3">
+                                </div>
+                                <div class="col-12">
+                                     <button type="submit" class="btn btn-primary">Enviar</button>
+                                </div>
+                             </form>`;
+    contenedorPrincipal.appendChild(menuCarga);
 
-//materia_alumno = Number(prompt('Ingrese una materia del listado para cargar las notas:')
+    // Agregar opciones de materias al select
+    const selectMateria = document.getElementById("materia");
+    materias.forEach(materia => {
+        const option = document.createElement("option");
+        option.text = materia;
+        option.value = materia;
+        selectMateria.appendChild(option);
+    });
 
-for (let materia of materias){
+    const formularioNotas = document.getElementById("formularioNotas");
+    formularioNotas.addEventListener('submit', (event) => {
+        event.preventDefault(); // Evitar que el formulario se envíe
 
-nota1_alumno = Number(prompt('Ingrese nota 1 de: ' + nombre_alumno + ' en la materia: ' + materia))
+        const nombreAlumno = document.getElementById("nombreAlumno").value;
+        const apellidoAlumno = document.getElementById("apellidoAlumno").value;
 
-nota2_alumno = Number(prompt('Ingrese nota 2 de: ' + nombre_alumno + ' en la materia: ' + materia))
+        Swal.fire({
+            position: "top-end",
+            icon: "success",
+            title: "Notas cargadas",
+            showConfirmButton: false,
+            timer: 500
+            })
 
-nota3_alumno = Number(prompt('Ingrese nota 3 de: ' + nombre_alumno + ' en la materia: ' + materia))
+        const materiaSeleccionada = document.getElementById("materia").value;
+        const nota1 = parseFloat(document.getElementById("nota1").value);
+        const nota2 = parseFloat(document.getElementById("nota2").value);
+        const nota3 = parseFloat(document.getElementById("nota3").value);
+        const promedioAlumno = (nota1 + nota2 + nota3) / 3;
+        if( promedioAlumno>promedioMaximo){
+            promedioMaximo = promedioAlumno;
+            const promedioMaximoNombre = nombreAlumno;
+            const promedioMaximoApellido = apellidoAlumno;
+            const promedioMaximoMateria = materiaSeleccionada;
+            const mejorAlumno = new MejorAlumno(promedioMaximoNombre , promedioMaximoApellido , promedioMaximoMateria ,promedioAlumno);
+            materiaMaxProm.push(mejorAlumno);
+            console.log("mejor promedio: " , mejorAlumno);
+            localStorage.setItem("Mejor Promedio: " , JSON.stringify(mejorAlumno));
 
-/*pedir_datos(nombre_alumno , curso_alumno , materia_alumno , nota1_alumno , nota2_alumno , nota3_alumno)*/
+            Toastify({
 
-suma = nota1_alumno + nota2_alumno + nota3_alumno
+                text: "Nuevo mejor promedio",
+                
+                duration: 3000
+                
+                }).showToast();
+        }else{
+            console.log("no es mejor promedio");
+        }
+        formularioNotas.reset();
 
-promedio_alumno = suma/3
+        const alumno = new Alumnos(nombreAlumno, apellidoAlumno, materiaSeleccionada, nota1, nota2, nota3, promedioAlumno);
+        alumnos.push(alumno);
 
-materia_alumno = materia
+        console.log("Alumno registrado:", alumno);
+    });
 
-datos_alumnos.push(new Alumno(nombre_alumno , curso_alumno , materia_alumno , nota1_alumno , nota2_alumno , nota3_alumno , promedio_alumno))
-
-suma = 0
-
-if (promedio_alumno>=7){
-
-console.log(nombre_alumno + ':' + materia_alumno + ' aprobado')
-
-acumulador_ap++
-
-}
-
-else {
-
-console.log(nombre_alumno + ':' + materia_alumno + ' desaprobado')
-
-acumulador_desap++
-
-}
-
-if (acumulador_ap == 10 && materia_alumno === 'Educacion Fisica' ){
-
-alumnos_ap.push(nombre_alumno)
-
-acumulador_ap = 0
-
-acumulador_desap = 0
-
-}
-
-if (acumulador_desap>=1 && materia_alumno === 'Educacion Fisica'){
-
-alumnos_desap.push(nombre_alumno)
-
-acumulador_ap = 0
-
-acumulador_desap = 0
-
-}
-
-}
-
-//console.log(datos_alumnos)
-
-acumulador++
-
-//acumulador_ap = 0
-
-//acumulador_desap = 0
-
-if(promedio_alumno>max_promedio){
-
-max_alumno = nombre_alumno
-
-max_materia = materia_alumno
-
-max_promedio = promedio_alumno
-
-}
-
-}while(acumulador!=cantidad_alumnos)
-
-for(let dato of datos_alumnos){
-
-console.log(dato)
-
-}
-
-console.log('Aprobados en todas las materias: \n')
-
-console.log(alumnos_ap.join(","))
-
-console.log('Desaprobados en al menos una materia: \n')
-
-console.log(alumnos_desap.join(","))
-
-console.log('El alumno: ' , max_alumno , ' tiene un promedio de: ' , max_promedio , ' en la materia: ' , max_materia)
-
-alert('El alumno: ' + max_alumno + ' tiene un promedio de: ' + max_promedio + ' en la materia: ' + max_materia)
-
-
-
-
-//PRIMER ENTREGA PROYECTO JS
-
-/*let continuar = 'Si'
-let promediomax = 0
-let alumnomax
-
-do {
-    let alumno = prompt('Ingrese nombre del alumno')
-    let nota1 = parseFloat(prompt('Ingrese nota 1er trimestre'))
-    let nota2 = parseFloat(prompt('Ingrese nota 2do trimestre'))
-    let nota3 = parseFloat(prompt('Ingrese nota 3er trimestre'))
-    let promedio = parseFloat((nota1+nota2+nota3)/3)
-    console.log(alumno,nota1,nota2,nota3,promedio)
-    if(nota1<4 || nota2<4 || nota3<4){
-        console.log('El alumno '+ alumno + ' se lleva la materia y debe rendir en diciembre por estar aplazado en uno o varios trimestres.Sin embargo , su promedio es: '+ promedio)
-        alert(alumno + " esta desaprobado y rendira la metria en diciembre")
-    }
-    if(promedio>promediomax && alumno!=null){
-        promediomax = promedio
-        alumnomax = alumno
-        alert(alumno + " por ahora es el mejor promedio")
-    }
-    continuar = prompt('Desea continuar: Si / No')
-} while (continuar == 'Si');
-
-alert('El alumno con mayor promedio es '+ alumnomax +' y su nota final es:'+ promediomax)*/
+});
